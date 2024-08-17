@@ -115,5 +115,5 @@ header a {
 }
 
 .play-link:hover {
-  background: darken(var(--primary), 10%);
+  background: #0e8c5f;
 }
