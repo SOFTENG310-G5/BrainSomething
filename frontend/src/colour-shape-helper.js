@@ -29,4 +29,17 @@ class ColourShapeHelper {
         }
         return result;
     }
+
+    // timer for x number of seconds
+    startTimer(seconds, callback) {
+        let timer = seconds;
+        const interval = setInterval(() => {
+            console.log(`Time left: ${timer} seconds`);
+            if (timer <= 0) {
+                clearInterval(interval);
+                callback();
+            }
+            timer--;
+        }, 1000);
+    }
 }
