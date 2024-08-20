@@ -1,6 +1,7 @@
-class ColourShapeHelper {
+class ColourPuzzleHelper {
     constructor() {
-        this.colours = ["white", "black", "red", "green", "blue", "yellow", "pink"];
+        this.colours = ["white", "black", "red", "green", "blue", "yellow", "pink", "purple"];
+        this.shades = ["#ffffff", "#e9040d", "#00bf3d", "#0e04e4", "#fbd906", "#f700b1", "#990e99"]
         this.shapes = ["circle", "triangle", "square", "rectangle"];
     }
 
@@ -18,6 +19,10 @@ class ColourShapeHelper {
     // returns a random array of 4 colours from the colours array
     getRandomColours() {
         return this.getRandomItems(this.colours, 4);
+    }
+
+    getRandomShades() {
+        return this.getRandomItems(this.shades, 4);
     }
 
     // returns a random array of specified length from the given array
@@ -43,3 +48,5 @@ class ColourShapeHelper {
         }, 1000);
     }
 }
+
+export default ColourPuzzleHelper;
