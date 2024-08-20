@@ -1,7 +1,7 @@
 class ColourPuzzleHelper {
     constructor() {
         this.colours = ["white", "black", "red", "green", "blue", "yellow", "pink", "purple"];
-        this.shades = ["#ffffff", "#e9040d", "#00bf3d", "#0e04e4", "#fbd906", "#f700b1", "#990e99"]
+        this.shades = ["#ffffff", "#e9040d", "#00bf3d", "#1291db", "#fbd906", "#f700b1", "#b017b0"]
         this.shapes = ["circle", "triangle", "square", "rectangle"];
     }
 

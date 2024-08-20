@@ -6,16 +6,22 @@ const HackPuzzle  = () =>{
 
     const helper = new ColourPuzzleHelper();
 
-    // Generate random data using ColourPuzzleHelper methods
-    const randomCardColours = helper.getRandomShades();
-    const randomShapeColours = helper.getRandomShades();
+    let randomCardColours = helper.getRandomShades();
+    let randomShapeColours = helper.getRandomShades();
     const randomShapeTypes = helper.getRandomShapes();
     const randomShapeText = helper.getRandomShapes();
     const randomColourText = helper.getRandomColours();
     const randomNumbers = helper.getRandomOrderArray();
-    const randomNumberColours = helper.getRandomShades();
-    const randomShapeTextColours = helper.getRandomShades();
-    const randomColourTextColours = helper.getRandomShades();
+    let randomNumberColours = helper.getRandomShades();
+    let randomShapeTextColours = helper.getRandomShades();
+    let randomColourTextColours = helper.getRandomShades();
+
+    randomCardColours = randomCardColours.map((cardColour, index) => {
+        while (cardColour === randomShapeColours[index]) {
+            randomShapeColours[index] = helper.getRandomItems(helper.colours, 1)[0];
+        }
+        return cardColour;
+    });
 
     return (
         <div className="background">
