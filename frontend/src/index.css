@@ -5,17 +5,19 @@
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  --card-bg-color: white;
 }
 body {
   background: #f1f1f1;
   margin: 0;
   font-family: "Poppins";
+  overflow: hidden;
 }
 header {
   background: #fff;
 }
 header .container {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
@@ -26,6 +28,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
+
 .pages {
   max-width: 1400px;
   padding: 20px;
@@ -34,10 +37,20 @@ header a {
 
 /* homepage */
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  gap: 0px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
 }
+
+.workouts{
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
 .workout-details {
   background: #fff;
   border-radius: 4px;
@@ -62,7 +75,7 @@ header a {
   right: 20px;
   cursor: pointer;
   background: #f1f1f1;
-  padding: 6px;
+  padding: 0px;
   border-radius: 50%;
   color: #333;
 }

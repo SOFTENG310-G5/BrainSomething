@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import dinosaurIcon from "../resources/images/dinosaur.png";
 
 // components
-import Game1 from "../components/Game1";
+
+import Game1 from "../components/Game1"
 
 const Home = () => {
   return (
