@@ -57,8 +57,7 @@ https://docs.google.com/document/d/1sQZUjjkCNwvpSUFfT6f2ajvL3CHVJje5Iorgev7QpO4/
 
 ## Project ground rules and expected behaviour
 
-Please read our Code of Conduct (in root repository):
-(link)
+Please read our [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 ## How contributors should (or should not) get in touch with you
 
