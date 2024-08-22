@@ -57,12 +57,12 @@ class ColourPuzzleHelper {
     startTimer(seconds, callback) {
         let timer = seconds;
         const interval = setInterval(() => {
+            timer--;
             console.log(`Time left: ${timer} seconds`);
             if (timer <= 0) {
                 clearInterval(interval);
                 callback();
             }
-            timer--;
         }, 1000);
     }
 }
