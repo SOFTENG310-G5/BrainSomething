@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, fireEvent } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Game1 from './Game1';
+import Game1 from './frontend/src/components/Game1';
 
 describe('Game1', () => {
     beforeEach(() => {

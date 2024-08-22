@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import ColourPuzzleInfo from './ColourPuzzleInfo';
+import ColourPuzzleInfo from './frontend/src/components/ColourPuzzleInfo';
 
 describe('ColourPuzzleInfo', () => {
     it('should render initial puzzle display time', () => {

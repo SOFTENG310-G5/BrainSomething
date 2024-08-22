@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ColourPuzzle from './ColourPuzzle';
+import ColourPuzzle from './frontend/src/components/ColourPuzzle';
 import { BrowserRouter } from 'react-router-dom';
 
-vi.mock('./ColourPuzzleHelper', () => {
+vi.mock('./frontend/src/components/ColourPuzzleHelper', () => {
     return {
         __esModule: true,
         default: vi.fn().mockImplementation(() => ({

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, act } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import ReactionGame from './ReactionGame';
+import ReactionGame from './frontend/src/components/ReactionGame';
 
 describe('ReactionGame', () => {
     const mockOnReactionComplete = vi.fn();

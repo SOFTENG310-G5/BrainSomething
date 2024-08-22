@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import HackPuzzle from './HackPuzzle';
-import ColourPuzzleHelper from './ColourPuzzleHelper';
+import HackPuzzle from './frontend/src/components/HackPuzzle';
+import ColourPuzzleHelper from './frontend/src/components/ColourPuzzleHelper';
 
-vi.mock('./ColourPuzzleHelper', () => {
+vi.mock('./frontend/src/components/ColourPuzzleHelper', () => {
     return {
         __esModule: true,
         default: vi.fn().mockImplementation(() => ({

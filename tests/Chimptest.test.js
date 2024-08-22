@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Chimptest from './Chimptest';
+import Chimptest from './frontend/src/components/Chimptest';
 
 describe('Chimptest', () => {
     beforeEach(() => {
