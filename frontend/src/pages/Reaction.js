@@ -4,7 +4,7 @@ import './Reaction.css'; // Import CSS for styling the page
 import { useParams } from 'react-router-dom';
 import DinoJump from '../components/DinoJump'; // Import the DinoJump component
 import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest component
-import ColourPuzzle from '../components/ColourPuzzleInfo';
+import ColourPuzzle from '../components/ColourPuzzle';
 
 const Reaction = () => {
     const { screen } = useParams();
@@ -36,6 +36,9 @@ const Reaction = () => {
 
     // Function to handle completion of a game 
     const onGameOver = (time) => {
+       
+
+        
         const newTimes = [...reactionTimes, time]; // Add the new time to the array of reaction times
 
         // If there are 3 attempts, calculate the average and determine the rank
@@ -46,6 +49,9 @@ const Reaction = () => {
         }
 
         setReactionTimes(newTimes); // Update the state with the new reaction times array
+
+        
+        
     };
 
     // Function to get the user's rank based on their average reaction time
@@ -135,11 +141,11 @@ const Reaction = () => {
             case "2":
                 setGameName("Reaction Game");
                 break;
-           
+
             case "3":
                 setGameName("Colour Puzzle");
                 break;
-                case "4":
+            case "4":
                     setGameName("Chimp Test");
                     break;
             default:
@@ -157,7 +163,8 @@ const Reaction = () => {
             
             return <ReactionGame onGameOver={onGameOver}/>;
             case "3":
-                return <ColourPuzzle />;
+
+                return <ColourPuzzle onGameOver={onGameOver} />;
 
             case "4":
                 

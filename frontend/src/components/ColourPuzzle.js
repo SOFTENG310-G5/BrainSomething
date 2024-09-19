@@ -6,10 +6,11 @@ import ColourPuzzleHelper from './ColourPuzzleHelper';
 import { Link, useLocation } from "react-router-dom";
 
 
-const ColourPuzzle = () => {
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const initialDisplayTime = parseInt(queryParams.get('time'), 10) || 10000;
+const ColourPuzzle = ({onGameOver}) => {
+    const [timeLimit, setTimeLimit] = useState(80);
+   const [startNewGame, setStartNewGame] = useState(null);
+
+    const initialDisplayTime = timeLimit;
     const PUZZLE_DISPLAY_TIME = 1000*initialDisplayTime;
     
     const [showOrderCards, setShowOrderCards] = useState(true);
@@ -21,28 +22,22 @@ const ColourPuzzle = () => {
     const intervalRef = useRef(null);
     const [randomOrderArray, setRandomOrderArray] = useState([]);
     const [remainingTime, setRemainingTime] = useState(PUZZLE_DISPLAY_TIME / 1000);
+    const [startTime, setStartTime] = useState(null);
+    const [show, setShow] = useState(false);
     
-    
-    const gameWon = () => {
-        setPuzzleSolved(true);
-        if (timerRef.current) {
-            clearTimeout(timerRef.current);
-        }
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-        }
-    }
-
-
+   
     
     // timer for the initial order of the puzzle, should be new order everytime the game is played.
     useEffect(() => {
+       
         const helper = new ColourPuzzleHelper();
         const orderArray = helper.getRandomOrderArray();
         setRandomOrderArray(orderArray);
         // wait 3 seconds, then show the puzzle and start the timer
         const hideOrderCardsTimer = setTimeout(() => {
             setShowOrderCards(false);
+            setShow(true);
+            setStartTime(Date.now());
 
             // Timer to show end screen if time runs out
             timerRef.current = setTimeout(() => {
@@ -71,16 +66,57 @@ const ColourPuzzle = () => {
                 clearTimeout(timerRef.current);
             }
         };
-    }, []);
+ } , [startNewGame]);
+    
+
     
     const getSolution = (sol) => {
         setSolution(sol);
     };
+
+ //change is called whenever the user types into the input box
+    const change = event => {
+        const inputValue = event.target.value;
+        setUserInput(inputValue);
+        if (inputValue.trim().toLowerCase() === solution) {
+            event.target.value = "";
+            gameWon();
+             // Set puzzleSolved to true when the input matches the solution
+             
+        }
+    }
+
+  
+
+    const gameWon = () => {
+        
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+          const timeTaken = Date.now()-startTime;
+        onGameOver(timeTaken/1000);
+        clearTimeout(timerRef.current);
+        clearInterval(intervalRef.current);
+        setPuzzleSolved(true);
+      
+     
+
+    }
     const restartGame = () => {
-        window.location.reload()
+        
+        setPuzzleSolved(false);
+      setShow(false);   
+      setShowOrderCards(true);
+        setStartNewGame(startNewGame => !startNewGame);
+       setStartTime(80);
+
     }
 
     if (timeOver) {
+
         return(
             <div className="end-screen">
                 <div className="end-text">Time ran out. You lost.</div>
@@ -93,13 +129,13 @@ const ColourPuzzle = () => {
     }
 
     if (puzzleSolved) {
+       
+
         return(
             <div className="end-screen">
                 <div className="end-text">You Won</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-                <Link to="/colour-puzzle" className="restart-button">
-                    <div className="info-text">Instructions</div>
-                </Link>
+               
             </div>
         )
     }
@@ -114,17 +150,12 @@ const ColourPuzzle = () => {
             />
         );
     }
-    //change is called whenever the user types into the input box
-    const change = event => {
-        const inputValue = event.target.value;
-        setUserInput(inputValue);
-        if (inputValue.trim().toLowerCase() === solution) {
-            gameWon(); // Set puzzleSolved to true when the input matches the solution
-        }
-    }
+
+   
 
     return (
-        <div className="input-area">
+        <div>
+       {show && (<div className="input-area">
             <HackPuzzle onSolutionCalculated={getSolution} randomOrderArray={randomOrderArray}/>
             <input 
                 value={userInput} 
@@ -134,7 +165,12 @@ const ColourPuzzle = () => {
                 onChange={change}
                 autoComplete="off"
             />
-            <div className="timer">{remainingTime}</div>
+                       
+
+            <div className="timer">{remainingTime}
+          
+            </div>
+        </div>)}
         </div>
     );
 };
