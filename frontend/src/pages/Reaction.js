@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ReactionGame from '../components/ReactionGame'; // Import the ReactionGame component
 import './Reaction.css'; // Import CSS for styling the page
+import { useParams } from 'react-router-dom';
+import DinoJump from '../components/Game1'; // Import the DinoJump component
+import ChimpTest from '../components/Chimptest'; // Import the ChimpTest component
+import ColourPuzzle from '../components/ColourPuzzleInfo';
 
 const Reaction = () => {
+    const { screen } = useParams();
+
     // State to hold the reaction times for each attempt
     const [reactionTimes, setReactionTimes] = useState([]);
     // State to hold the calculated average reaction time after three attempts
@@ -40,7 +46,7 @@ const Reaction = () => {
         try {
             const response = await fetch('/api/reaction/rank', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'screen': screen },
                 body: JSON.stringify({ score: average }) // Send the average score to the backend
             });
             const data = await response.json();
@@ -53,7 +59,7 @@ const Reaction = () => {
     // Function to fetch the top 5 scores of the day from the backend
     const getTopScores = async () => {
         try {
-            const response = await fetch('/api/reaction/top-scores');
+            const response = await fetch('/api/reaction/top-scores',{ headers: { 'screen': screen }});
             if (!response.ok) {
                 throw new Error('Failed to fetch top scores');
             }
@@ -70,7 +76,7 @@ const Reaction = () => {
         try {
             await fetch('/api/reaction/save-score', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'screen': screen  },
                 body: JSON.stringify({ name, score: averageTime }) // Send the user's name and average score to the backend
             });
             setScoreSaved(true); // Set the scoreSaved state to true upon successful save
@@ -78,13 +84,32 @@ const Reaction = () => {
             console.error('Error saving score:', error);
         }
     };
+    const renderScreenComponent = () => {
+        switch (screen) {
+          case "1":
+          
+            return <DinoJump onReactionComplete={handleReactionComplete} />;
+          case "2":
+            
+            return <ReactionGame onReactionComplete={handleReactionComplete}/>;
+            case "3":
+                return <ColourPuzzle />;
+
+            case "4":
+                
+                return <ChimpTest onReactionComplete={handleReactionComplete}/>;
+        
+          default:
+            return <div>Invalid screen parameter</div>; // Optional fallback for invalid screens
+        }
+      };
 
     return (
         <div className="reaction-page">
             <h1>Reaction Game</h1>
 
-            {/* Include the ReactionGame component and pass the handleReactionComplete function as a prop */}
-            <ReactionGame onReactionComplete={handleReactionComplete} />
+            {/* Include the Game component  */}
+           {renderScreenComponent()}
 
             <div className="stats-and-leaderboard">
                 <div className="statistics">

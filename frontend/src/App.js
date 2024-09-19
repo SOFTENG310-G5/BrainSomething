@@ -23,7 +23,7 @@ function App() {
             <Route path="/dino-jump" element={<Game1 />} />
             <Route path="/colour-puzzle" element={<ColourPuzzleInfo/>}/>
             <Route path="/colour-puzzle/start" element={<ColourPuzzle/>}/>
-            <Route path="/reaction-game" element={<Reaction />} />
+            <Route path="/reaction-game/:screen" element={<Reaction />} />
             <Route path="/chimp-test" element={<ChimpTest />} />
           </Routes>
         </div>
