@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 
 
 const ColourPuzzle = ({onGameOver}) => {
-    const [timeLimit, setTimeLimit] = useState(80);
+    const [timeLimit, setTimeLimit] = useState(10);
    const [startNewGame, setStartNewGame] = useState(null);
 
     const initialDisplayTime = timeLimit;
@@ -41,8 +41,7 @@ const ColourPuzzle = ({onGameOver}) => {
 
             // Timer to show end screen if time runs out
             timerRef.current = setTimeout(() => {
-                setShowOrderCards(true);
-                setTimeOver(true);
+                gameLost();
             }, PUZZLE_DISPLAY_TIME);
 
             intervalRef.current = setInterval(() => {
@@ -79,7 +78,7 @@ const ColourPuzzle = ({onGameOver}) => {
         const inputValue = event.target.value;
         setUserInput(inputValue);
         if (inputValue.trim().toLowerCase() === solution) {
-setUserInput("");
+            setUserInput("");
             gameWon();
              // Set puzzleSolved to true when the input matches the solution
              
@@ -87,6 +86,16 @@ setUserInput("");
     }
 
   
+    const gameLost = () => {
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+        }
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+            
+            setTimeOver(true);
+    }
 
     const gameWon = () => {
         
@@ -98,16 +107,19 @@ setUserInput("");
         }
           const timeTaken = Date.now()-startTime;
         onGameOver(timeTaken/1000);
-        clearTimeout(timerRef.current);
-        clearInterval(intervalRef.current);
+       
         setPuzzleSolved(true);
+       
       
      
 
     }
     const restartGame = () => {
-        
+        console.log("restart game");
+        clearTimeout(timerRef.current);
+        clearInterval(intervalRef.current);
         setPuzzleSolved(false);
+        setTimeOver(false);
       setShow(false);   
       setShowOrderCards(true);
         setStartNewGame(startNewGame => !startNewGame);
@@ -121,9 +133,7 @@ setUserInput("");
             <div className="end-screen">
                 <div className="end-text">Time ran out. You lost.</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-                <Link to="/colour-puzzle" className="restart-button">
-                    <div className="info-text">Instructions</div>
-                </Link>
+                
             </div>
         )
     }

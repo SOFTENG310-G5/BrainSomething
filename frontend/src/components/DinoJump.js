@@ -7,6 +7,7 @@ const Game1 = ({onGameOver}) => {
     const [gameLength, setGameLength] = useState(null);
 
     useEffect(() => {
+        
         const dino = document.getElementById("dino");
         const cactus = document.getElementById("cactus");
 
