@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import './Chimptest.css';
+import './ChimpTest.css';
 
-function Chimptest() {
+function ChimpTest({onGameOver}) {
 
     // Set initial game state.
   let level = 4;
@@ -79,6 +79,7 @@ function Chimptest() {
       flashText();
       document.getElementById('strikes').textContent = `Strikes: ${strikes}/3`;
       if (strikes === 3) {
+        onGameOver((level-3)*24 - (strikes*4));
         document.getElementById('popup').style.display = 'flex';
         document.getElementById('overlay').style.display = 'flex';
       } else {
@@ -139,4 +140,4 @@ function Chimptest() {
   );
 }
 
-export default Chimptest;
+export default ChimpTest;

@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Game1 from "./components/DinoJump";
 import Reaction from './pages/Reaction';
 import ReactionGame from './components/ReactionGame';
-import ChimpTest from "./components/Chimptest";
+import ChimpTest from "./components/ChimpTest";
 
 import ColourPuzzle from "./components/ColourPuzzle";
 import ColourPuzzleInfo from "./components/ColourPuzzleInfo";

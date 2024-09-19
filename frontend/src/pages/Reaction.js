@@ -3,7 +3,7 @@ import ReactionGame from '../components/ReactionGame'; // Import the ReactionGam
 import './Reaction.css'; // Import CSS for styling the page
 import { useParams } from 'react-router-dom';
 import DinoJump from '../components/DinoJump'; // Import the DinoJump component
-import ChimpTest from '../components/Chimptest'; // Import the ChimpTest component
+import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest component
 import ColourPuzzle from '../components/ColourPuzzleInfo';
 
 const Reaction = () => {

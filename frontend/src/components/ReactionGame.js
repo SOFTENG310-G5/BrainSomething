@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ReactionGame.css'; // Styling for the reaction game
 
-const ReactionGame = ({ onReactionComplete }) => {
+const ReactionGame = ({ onGameOver }) => {
     const [color, setColor] = useState('blue'); // Initial color is blue
     const [message, setMessage] = useState('Click this when you are ready.');
     const [startTime, setStartTime] = useState(null);
@@ -29,11 +29,11 @@ const ReactionGame = ({ onReactionComplete }) => {
             setMessage('Sorry, too early! Click this when you are ready.');
         } else if (color === 'green') {
             const endTime = Date.now();
-            const reaction = endTime - startTime;
-            setReactionTime(reaction);
+            const reactionTime = endTime - startTime;
+            setReactionTime(reactionTime);
             setColor('blue');
-            setMessage(`Your reaction time is ${reaction} ms. Click this when you are ready.`);
-            onReactionComplete(reaction); // Callback to pass the reaction time to the parent component
+            setMessage(`Your reaction time is ${reactionTime} ms. Click this when you are ready.`);
+            onGameOver(reactionTime); // Callback to pass the reaction time to the parent component
         }
     };
 
