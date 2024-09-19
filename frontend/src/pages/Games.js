@@ -27,6 +27,7 @@ const Reaction = () => {
     const[units, setUnits] = useState("s");
     const[dp, setDp] = useState(2);
     const[gameName, setGameName] = useState(null);
+    const [saveScoreDisabled, setSaveScoreDisabled] = useState(false); // State to control the disabled status
 
     // useEffect hook to fetch the top scores as soon as the component mounts
     useEffect(() => {
@@ -44,14 +45,15 @@ const Reaction = () => {
         const newTimes = [...reactionTimes, time]; // Add the new time to the array of reaction times
 
         // If there are 3 attempts, calculate the average and determine the rank
-        if (newTimes.length === 3) {
+        if (newTimes.length >=3 ) {
             const average = newTimes.slice(-3).reduce((acc, cur) => acc + cur, 0) / 3;
             setAverageScore(average);
             getRank(average); // Get the rank based on the average time
         }
 
         setReactionTimes(newTimes); // Update the state with the new reaction times array
-
+        setScoreSaved(false); // Reset the scoreSaved state to false after each attempt
+        setSaveScoreDisabled(false); // Enable the save score button after each attempt
         
         
     };
@@ -98,6 +100,9 @@ const Reaction = () => {
             });
             setScoreSaved(true); // Set the scoreSaved state to true upon successful save
             getTopScores();
+            
+            setSaveScoreDisabled(true); // Disable the save score button after the score is saved
+
         } catch (error) {
             console.error('Error saving score:', error);
         }
@@ -207,13 +212,13 @@ const Reaction = () => {
                             <p>The average of your last 3 attempts: {averageScore.toFixed(dp)} {units}</p>
                             <p>Your rank: {rank}</p>
                             {/* Button to save the user's score */}
-                            <button onClick={saveScore}>Save your score</button>
+                            <button disabled={saveScoreDisabled} onClick={saveScore}>Save your score</button>
                             {/* Input field for the user to enter their name */}
                             <input
                                 type="text"
                                 placeholder="Enter your name"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}disabled={saveScoreDisabled}
                             />
                             {/* Display a confirmation message if the score is saved */}
                             {scoreSaved && <p>Score saved, {name}!</p>}
