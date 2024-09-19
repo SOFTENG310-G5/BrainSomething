@@ -3,15 +3,17 @@ import HackPuzzle from "./HackPuzzle";
 import OrderCards from "./OrderCards";
 import React, {useState, useEffect, useRef} from 'react';
 import ColourPuzzleHelper from './ColourPuzzleHelper';
+import ColourPuzzleInfo from "./ColourPuzzleInfo";
 import { Link, useLocation } from "react-router-dom";
 
 
 const ColourPuzzle = ({onGameOver}) => {
-    const [timeLimit, setTimeLimit] = useState(10);
+   
    const [startNewGame, setStartNewGame] = useState(null);
-
-    const initialDisplayTime = timeLimit;
-    const PUZZLE_DISPLAY_TIME = 1000*initialDisplayTime;
+   const [timeLimit, setTimeLimit] = useState(60);
+    const [showInstruction, setShowInstruction] = useState(true);
+   
+    let PUZZLE_DISPLAY_TIME = 1000*timeLimit;
     
     const [showOrderCards, setShowOrderCards] = useState(true);
     const [timeOver, setTimeOver] = useState(false);
@@ -23,20 +25,27 @@ const ColourPuzzle = ({onGameOver}) => {
     const [randomOrderArray, setRandomOrderArray] = useState([]);
     const [remainingTime, setRemainingTime] = useState(PUZZLE_DISPLAY_TIME / 1000);
     const [startTime, setStartTime] = useState(null);
-    const [show, setShow] = useState(false);
+    const [showPuzzle, setShowPuzzle] = useState(false);
     
-   
-    
+   useEffect(() => {PUZZLE_DISPLAY_TIME = 1000* timeLimit; 
+    setRemainingTime(PUZZLE_DISPLAY_TIME / 1000);
+   }, [timeLimit]);
     // timer for the initial order of the puzzle, should be new order everytime the game is played.
-    useEffect(() => {
-       
+     useEffect(() => {
+      if(showInstruction){
+        return;
+      }
+      
         const helper = new ColourPuzzleHelper();
         const orderArray = helper.getRandomOrderArray();
         setRandomOrderArray(orderArray);
         // wait 3 seconds, then show the puzzle and start the timer
         const hideOrderCardsTimer = setTimeout(() => {
+
             setShowOrderCards(false);
-            setShow(true);
+            // show the puzzle
+            setShowPuzzle(true);
+            // start recording the time it takes to solve the puzzle
             setStartTime(Date.now());
 
             // Timer to show end screen if time runs out
@@ -65,7 +74,7 @@ const ColourPuzzle = ({onGameOver}) => {
                 clearTimeout(timerRef.current);
             }
         };
- } , [startNewGame]);
+ } , [startNewGame, showInstruction]);
     
 
     
@@ -78,6 +87,7 @@ const ColourPuzzle = ({onGameOver}) => {
         const inputValue = event.target.value;
         setUserInput(inputValue);
         if (inputValue.trim().toLowerCase() === solution) {
+            
             setUserInput("");
             gameWon();
              // Set puzzleSolved to true when the input matches the solution
@@ -105,6 +115,7 @@ const ColourPuzzle = ({onGameOver}) => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
         }
+        //output the time taken to solve the puzzle in seconds
           const timeTaken = Date.now()-startTime;
         onGameOver(timeTaken/1000);
        
@@ -115,15 +126,15 @@ const ColourPuzzle = ({onGameOver}) => {
 
     }
     const restartGame = () => {
+
         console.log("restart game");
-        clearTimeout(timerRef.current);
-        clearInterval(intervalRef.current);
+        
         setPuzzleSolved(false);
         setTimeOver(false);
-      setShow(false);   
-      setShowOrderCards(true);
+        setShowPuzzle(false);   
+        setShowOrderCards(true);
         setStartNewGame(startNewGame => !startNewGame);
-       setRemainingTime(initialDisplayTime);
+       setRemainingTime(timeLimit);
 
     }
 
@@ -133,7 +144,9 @@ const ColourPuzzle = ({onGameOver}) => {
             <div className="end-screen">
                 <div className="end-text">Time ran out. You lost.</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-                
+                <Link to="/colour-puzzle" className="restart-button">
+                    <div className="info-text">Instructions</div>
+                </Link>
             </div>
         )
     }
@@ -145,12 +158,14 @@ const ColourPuzzle = ({onGameOver}) => {
             <div className="end-screen">
                 <div className="end-text">You Won</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-               
+                <Link to="/colour-puzzle" className="restart-button">
+                    <div className="info-text">Instructions</div>
+                </Link>
             </div>
         )
     }
 
-    if (showOrderCards) {
+    if (showOrderCards && !showInstruction) {
         return (
             <OrderCards
                 first={randomOrderArray[0]}
@@ -161,11 +176,18 @@ const ColourPuzzle = ({onGameOver}) => {
         );
     }
 
+    if(showInstruction){
+        return(
+<div>
+<ColourPuzzleInfo setShowInstructions={setShowInstruction} setTimeLimit={setTimeLimit}/></div>);}
+
    
 
     return (
         <div>
-       {show && (<div className="input-area">
+           
+       
+       {showPuzzle && (<div className="input-area">
             <HackPuzzle onSolutionCalculated={getSolution} randomOrderArray={randomOrderArray}/>
             <input 
                 value={userInput} 

@@ -79,7 +79,11 @@ function ChimpTest({onGameOver}) {
       flashText();
       document.getElementById('strikes').textContent = `Strikes: ${strikes}/3`;
       if (strikes === 3) {
+
+        //the formula for the score is (level-3)*24 - (strikes*4)
         onGameOver((level-3)*24 - (strikes*4));
+        
+        
         document.getElementById('popup').style.display = 'flex';
         document.getElementById('overlay').style.display = 'flex';
       } else {

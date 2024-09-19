@@ -7,6 +7,8 @@ import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest compone
 import ColourPuzzle from '../components/ColourPuzzle';
 
 const Reaction = () => {
+    
+    //when clicking on any game link the url will include a paramater called screen which will be the game number
     const { screen } = useParams();
 
     // State to hold the reaction times for each attempt
@@ -53,8 +55,10 @@ const Reaction = () => {
         
         
     };
+    //The next 3 functions have the screen value, which is the game number, as a parameter passed into their headers
+    // so that the backend can identify which game the scores need to be fetched/saved for
 
-    // Function to get the user's rank based on their average reaction time
+    // Function to get the user's rank based on their average score
     const getRank = async (average) => {
         try {
             const response = await fetch('/api/reaction/rank', {
@@ -155,6 +159,7 @@ const Reaction = () => {
 
         }}
 
+        
     const renderScreenComponent = () => {
         switch (screen) {
           case "1":

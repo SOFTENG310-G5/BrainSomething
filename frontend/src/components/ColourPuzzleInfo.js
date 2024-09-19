@@ -3,10 +3,9 @@ import React, {useState} from 'react';
 //image resources
 import examplePuzzle from "../resources/images/examplepuzzle.png";
 import exampleOrder from "../resources/images/exampleorder.png";
-import ColourPuzzle from "../components/ColourPuzzle";
-import { Link } from "react-router-dom";
 
-const ColourPuzzleInfo = ({onGameOver}) => {
+
+const ColourPuzzleInfo = ({setShowInstructions, setTimeLimit}) => {
     const [selectedTime, setSelectedTime] = useState(10);// default is 10 sec
     const[playClicked, setPlayClicked] = useState(false);
     
@@ -15,6 +14,14 @@ const ColourPuzzleInfo = ({onGameOver}) => {
     };
     //url will end with colour-puzzle/start?time=[however long they choose]
     const link = `start?time=${encodeURIComponent(selectedTime)}`;
+
+    const exitInstructions = () => {
+        setPlayClicked(true);
+        setShowInstructions(false);
+      
+        setTimeLimit(selectedTime);
+        
+    }
 
     return (
         <div>
@@ -32,7 +39,9 @@ const ColourPuzzleInfo = ({onGameOver}) => {
             <p>Type the answers with a space in between.</p>
             <button
                         className={" "}
-                        onClick={() => setPlayClicked(true)}
+                        onClick={() => exitInstructions()
+
+                        }
                     >
                         play
                     </button>
@@ -62,9 +71,7 @@ const ColourPuzzleInfo = ({onGameOver}) => {
             
         </div>
     </div>)}
-    {
-                playClicked && <ColourPuzzle onGameOver={onGameOver} time={selectedTime} />
-            }
+   
     </div>
     )
 }

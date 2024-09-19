@@ -62,9 +62,12 @@ const Game1 = ({onGameOver}) => {
         setGameOver(false);
 
         const cactus = document.getElementById("cactus");
-        cactus.style.animation = "none"; // Stop the current animation
-        cactus.getBoundingClientRect();  // This forces reflow without triggering lint warnings
-        cactus.style.animation = 'moveCactus 1.5s infinite linear'; //restart the animation
+         // Stop the current animation
+        cactus.style.animation = "none";
+        // This forces reflow without triggering lint warnings
+        cactus.getBoundingClientRect();  
+        //restart the animation
+        cactus.style.animation = 'moveCactus 1.5s infinite linear'; 
         setStartTime(Date.now());
     }
 
