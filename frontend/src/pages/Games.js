@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactionGame from '../components/ReactionGame'; // Import the ReactionGame component
-import './Reaction.css'; // Import CSS for styling the page
+import './Games.css'; // Import CSS for styling the page
 import { useParams } from 'react-router-dom';
 import DinoJump from '../components/DinoJump'; // Import the DinoJump component
 import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest component
@@ -12,7 +12,7 @@ const Reaction = () => {
     // State to hold the reaction times for each attempt
     const [reactionTimes, setReactionTimes] = useState([]);
     // State to hold the calculated average reaction time after three attempts
-    const [averageTime, setAverageTime] = useState(null);
+    const [averageScore, setAverageScore] = useState(null);
     // State to hold the user's rank based on their average time
     const [rank, setRank] = useState(null);
     // State to hold the top 5 scores of the day
@@ -43,8 +43,8 @@ const Reaction = () => {
 
         // If there are 3 attempts, calculate the average and determine the rank
         if (newTimes.length === 3) {
-            const average = newTimes.reduce((acc, cur) => acc + cur, 0) / 3;
-            setAverageTime(average);
+            const average = newTimes.slice(-3).reduce((acc, cur) => acc + cur, 0) / 3;
+            setAverageScore(average);
             getRank(average); // Get the rank based on the average time
         }
 
@@ -90,9 +90,10 @@ const Reaction = () => {
             await fetch('/api/reaction/save-score', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'screen': screen  },
-                body: JSON.stringify({ name, score: averageTime }) // Send the user's name and average score to the backend
+                body: JSON.stringify({ name, score: averageScore }) // Send the user's name and average score to the backend
             });
             setScoreSaved(true); // Set the scoreSaved state to true upon successful save
+            getTopScores();
         } catch (error) {
             console.error('Error saving score:', error);
         }
@@ -196,9 +197,9 @@ const Reaction = () => {
                         <p>No attempts yet.</p> // Display this message if there are no attempts yet
                     )}
 
-                    {averageTime && (
+                    {averageScore && (
                         <div>
-                            <p>The average of your last 3 attempts: {averageTime.toFixed(dp)} {units}</p>
+                            <p>The average of your last 3 attempts: {averageScore.toFixed(dp)} {units}</p>
                             <p>Your rank: {rank}</p>
                             {/* Button to save the user's score */}
                             <button onClick={saveScore}>Save your score</button>

@@ -118,9 +118,9 @@ const getUserRank = async (req, res) => {
             }
         }
         else if (screen=="3"){
-            allRecords = await ColourPuzzleRecords.find({}).sort({ score: -1 });
+            allRecords = await ColourPuzzleRecords.find({}).sort({ score: 1 });
             for (let i = 0; i < allRecords.length; i++) {
-                if (allRecords[i].score >= score) {
+                if (allRecords[i].score <= score) {
                     rank++;
                 } else {
                     break;

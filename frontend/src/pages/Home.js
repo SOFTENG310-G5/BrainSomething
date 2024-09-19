@@ -18,7 +18,7 @@ const Home = () => {
             <h3>Dino Jump</h3>
             <img src={dinosaurIcon} alt="Dinosaur" className="card-icon" />
             <p>A fun jumping game</p>
-            <Link to="/reaction-game/1" className="play-link"> Play Dino Jump</Link>
+            <Link to="/game/1" className="play-link"> Play Dino Jump</Link>
           </div>
 
           {/* Card for Reaction Game */}
@@ -26,14 +26,14 @@ const Home = () => {
             <h3>Reaction Game</h3>
             <img src={reactionIcon} alt="Reaction" className="card-icon" />
             <p>Test your reaction speed</p>
-            <Link to="/reaction-game/2" className="play-link"> Play Reaction Game</Link>
+            <Link to="/game/2" className="play-link"> Play Reaction Game</Link>
           </div>
           {/* Card for colour puzzle */}
         <div className="card">
           <h3>Colour Puzzle</h3>
           <img src={eyeIcon} alt="Eye" className="card-icon" />
           <p>A tricky observation game</p>
-          <Link to="/reaction-game/3" className="play-link"> Play Colour Puzzle</Link>
+          <Link to="/game/3" className="play-link"> Play Colour Puzzle</Link>
         </div>
 
           {/* Card for Chimp Test Game */}
@@ -41,7 +41,7 @@ const Home = () => {
             <h3>Chimp Test</h3>
             <img src={monkeyIcon} alt="Monkey" className="card-icon" />
             <p>Is your memory better than a monkey's?</p>
-            <Link to="/reaction-game/4" className="play-link"> Play Chimp Test</Link>
+            <Link to="/game/4" className="play-link"> Play Chimp Test</Link>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ const {
     getTopScores,
     saveScore,
     getUserRank
-} = require('../controllers/reactionRecordController');
+} = require('../controllers/recordController');
 
 const router = express.Router();
 

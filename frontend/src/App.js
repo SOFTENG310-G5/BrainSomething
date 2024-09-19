@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Game1 from "./components/DinoJump";
-import Reaction from './pages/Reaction';
+import Games from './pages/Games';
 import ReactionGame from './components/ReactionGame';
 import ChimpTest from "./components/ChimpTest";
 
@@ -23,7 +23,7 @@ function App() {
             <Route path="/dino-jump" element={<Game1 />} />
             <Route path="/colour-puzzle" element={<ColourPuzzleInfo/>}/>
             <Route path="/colour-puzzle/start" element={<ColourPuzzle/>}/>
-            <Route path="/reaction-game/:screen" element={<Reaction />} />
+            <Route path="/game/:screen" element={<Games />} />
             <Route path="/chimp-test" element={<ChimpTest />} />
           </Routes>
         </div>

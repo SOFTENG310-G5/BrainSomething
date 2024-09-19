@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const BrainSomethingRoutes = require('./routes/reactionRecord');
+const BrainSomethingRoutes = require('./routes/recordRoutes');
 
 // express app
 const app = express()
