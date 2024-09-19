@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactionGame from '../components/ReactionGame'; // Import the ReactionGame component
 import './Reaction.css'; // Import CSS for styling the page
 import { useParams } from 'react-router-dom';
-import DinoJump from '../components/Game1'; // Import the DinoJump component
+import DinoJump from '../components/DinoJump'; // Import the DinoJump component
 import ChimpTest from '../components/Chimptest'; // Import the ChimpTest component
 import ColourPuzzle from '../components/ColourPuzzleInfo';
 
@@ -34,8 +34,8 @@ const Reaction = () => {
         getTopScores(); // Automatically fetch top scores when the page loads
     }, []);
 
-    // Function to handle completion of a reaction time attempt
-    const handleReactionComplete = (time) => {
+    // Function to handle completion of a game 
+    const onGameOver = (time) => {
         const newTimes = [...reactionTimes, time]; // Add the new time to the array of reaction times
 
         // If there are 3 attempts, calculate the average and determine the rank
@@ -152,16 +152,16 @@ const Reaction = () => {
         switch (screen) {
           case "1":
           
-            return <DinoJump onReactionComplete={handleReactionComplete} />;
+            return <DinoJump onGameOver={onGameOver} />;
           case "2":
             
-            return <ReactionGame onReactionComplete={handleReactionComplete}/>;
+            return <ReactionGame onGameOver={onGameOver}/>;
             case "3":
                 return <ColourPuzzle />;
 
             case "4":
                 
-                return <ChimpTest onReactionComplete={handleReactionComplete}/>;
+                return <ChimpTest onGameOver={onGameOver}/>;
         
           default:
             return <div>Invalid screen parameter</div>; // Optional fallback for invalid screens

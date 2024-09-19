@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './Game1.css'; // Assuming you add custom styles for the game here
+import './DinoJump.css'; // Assuming you add custom styles for the game here
 
-const Game1 = () => {
+const Game1 = ({onGameOver}) => {
     const [gameOver, setGameOver] = useState(false);
+    const [startTime, setStartTime] = useState(Date.now());
+    const [gameLength, setGameLength] = useState(null);
 
     useEffect(() => {
         const dino = document.getElementById("dino");
@@ -32,13 +34,16 @@ const Game1 = () => {
 
             // Adjust the collision detection logic
             if (cactusLeft < 120 && cactusLeft > 0 && dinoTop >= 140) {
+                // Calculate the game length 
+                setGameLength(Date.now() - startTime);
                 // Immediately stop cactus animation and set game over
                 cactus.style.animationPlayState = "paused"; // Directly stop the cactus animation
                 setGameOver(true);
             }
 
-            // Stop checking once the game is over
+            // Stop checking once the game is over, and pass the length of the game in seconds to the parent component
             if (gameOver) {
+                onGameOver(gameLength/1000); 
                 clearInterval(isAlive);
             }
         }, 10);
@@ -52,7 +57,14 @@ const Game1 = () => {
     }, [gameOver]);
 
     const restartGame = () => {
-        window.location.reload();
+        // Reset the game state
+        setGameOver(false);
+
+        const cactus = document.getElementById("cactus");
+        cactus.style.animation = "none"; // Stop the current animation
+        cactus.getBoundingClientRect();  // This forces reflow without triggering lint warnings
+        cactus.style.animation = 'moveCactus 1.5s infinite linear'; //restart the animation
+        setStartTime(Date.now());
     }
 
 
