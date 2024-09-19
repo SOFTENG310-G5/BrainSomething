@@ -15,4 +15,4 @@ const reactionRecordSchema = new Schema({
 }, { timestamps: true }); // Automatically adds 'createdAt' and 'updatedAt' timestamps
 
 // Export the schema as a model named 'ColourPuzzleRecord'
-module.exports = mongoose.model('ColourPuzzleRecord', reactionRecordSchema);
+module.exports = mongoose.model('ColourRecord', reactionRecordSchema);
