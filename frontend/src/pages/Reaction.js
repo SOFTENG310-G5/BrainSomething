@@ -21,9 +21,16 @@ const Reaction = () => {
     const [name, setName] = useState('');
     // State to indicate if the score has been successfully saved
     const [scoreSaved, setScoreSaved] = useState(false);
+    //define the units, decimal points and game name of the game scores
+    const[units, setUnits] = useState("s");
+    const[dp, setDp] = useState(2);
+    const[gameName, setGameName] = useState(null);
 
     // useEffect hook to fetch the top scores as soon as the component mounts
     useEffect(() => {
+        defineUnits();
+        defineDp();
+        defineGameName();
         getTopScores(); // Automatically fetch top scores when the page loads
     }, []);
 
@@ -84,6 +91,63 @@ const Reaction = () => {
             console.error('Error saving score:', error);
         }
     };
+    const defineUnits = () => {
+        switch(screen){
+            case "1":
+                setUnits("s");
+                break;
+            case "2":
+                setUnits("ms");
+                break;
+            case "3":
+                setUnits("s");
+                break;
+            case "4":
+                setUnits("points");
+                break;
+            default:
+                setUnits("ms");
+                break;
+        }}
+    const defineDp = () => {    
+        switch(screen){
+            case "1":
+                setDp(2);
+                break;
+            case "2":
+                setDp(2);
+                break;
+            case "3":
+                setDp(2);
+                break;
+            case "4":
+                setDp(0);
+                break;
+            default:
+                setDp(2);
+    }}
+
+    const defineGameName = () => {    
+        switch(screen){
+            case "1":
+                setGameName("Dino Jump");
+                break;
+            case "2":
+                setGameName("Reaction Game");
+                break;
+           
+            case "3":
+                setGameName("Colour Puzzle");
+                break;
+                case "4":
+                    setGameName("Chimp Test");
+                    break;
+            default:
+                setGameName("Game");
+                break;
+
+        }}
+
     const renderScreenComponent = () => {
         switch (screen) {
           case "1":
@@ -106,7 +170,7 @@ const Reaction = () => {
 
     return (
         <div className="reaction-page">
-            <h1>Reaction Game</h1>
+            <h1>{gameName}</h1>
 
             {/* Include the Game component  */}
            {renderScreenComponent()}
@@ -118,7 +182,7 @@ const Reaction = () => {
                         <ul>
                             {/* Display each reaction time in the list */}
                             {reactionTimes.map((time, index) => (
-                                <li key={index}>Attempt {index + 1}: {time} ms</li>
+                                <li key={index}>Attempt {index + 1}: {time.toFixed(dp)} {units}</li>
                             ))}
                         </ul>
                     ) : (
@@ -127,7 +191,7 @@ const Reaction = () => {
 
                     {averageTime && (
                         <div>
-                            <p>Your average time: {averageTime} ms</p>
+                            <p>The average of your last 3 attempts: {averageTime.toFixed(dp)} {units}</p>
                             <p>Your rank: {rank}</p>
                             {/* Button to save the user's score */}
                             <button onClick={saveScore}>Save your score</button>
@@ -150,7 +214,7 @@ const Reaction = () => {
                     <ul>
                         {topScores.length > 0 ? (
                             topScores.map((score, index) => (
-                                <li key={score._id}>{score.name}: {score.score.toFixed(2)} ms</li>
+                                <li key={score._id}>{score.name}: {score.score.toFixed(dp)} {units}</li>
                             ))
                         ) : (
                             <li>No scores available</li> // Display this message if no scores are available
