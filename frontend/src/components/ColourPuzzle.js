@@ -79,7 +79,7 @@ const ColourPuzzle = ({onGameOver}) => {
         const inputValue = event.target.value;
         setUserInput(inputValue);
         if (inputValue.trim().toLowerCase() === solution) {
-            event.target.value = "";
+setUserInput("");
             gameWon();
              // Set puzzleSolved to true when the input matches the solution
              
@@ -111,7 +111,7 @@ const ColourPuzzle = ({onGameOver}) => {
       setShow(false);   
       setShowOrderCards(true);
         setStartNewGame(startNewGame => !startNewGame);
-       setStartTime(80);
+       setRemainingTime(initialDisplayTime);
 
     }
 
