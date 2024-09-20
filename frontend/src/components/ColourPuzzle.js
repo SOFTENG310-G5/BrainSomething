@@ -33,8 +33,10 @@ const ColourPuzzle = ({onGameOver}) => {
     // timer for the initial order of the puzzle, should be new order everytime the game is played.
      useEffect(() => {
       if(showInstruction){
+        
         return;
       }
+      
       
         const helper = new ColourPuzzleHelper();
         const orderArray = helper.getRandomOrderArray();
@@ -137,20 +139,26 @@ const ColourPuzzle = ({onGameOver}) => {
        setRemainingTime(timeLimit);
 
     }
+    
 
+    if(showInstruction){
+        console.log('ed');
+        return(
+            <div> <ColourPuzzleInfo setShowInstruction={setShowInstruction} setTimeLimit={setTimeLimit} restartGame={restartGame}/></div>);}
+    
+    //display time over screen
     if (timeOver) {
 
         return(
             <div className="end-screen">
                 <div className="end-text">Time ran out. You lost.</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-                <Link to="/colour-puzzle" className="restart-button">
-                    <div className="info-text">Instructions</div>
-                </Link>
+                <button onClick={()=>setShowInstruction(true)} className="restart-button">Instructions</button>
+
             </div>
         )
     }
-
+    //display puzzle solved screen
     if (puzzleSolved) {
        
 
@@ -158,9 +166,8 @@ const ColourPuzzle = ({onGameOver}) => {
             <div className="end-screen">
                 <div className="end-text">You Won</div>
                 <button onClick={restartGame} className="restart-button">Play again</button>
-                <Link to="/colour-puzzle" className="restart-button">
-                    <div className="info-text">Instructions</div>
-                </Link>
+              <button onClick={()=>setShowInstruction(true)} className="restart-button">Instructions</button>
+
             </div>
         )
     }
@@ -176,17 +183,13 @@ const ColourPuzzle = ({onGameOver}) => {
         );
     }
 
-    if(showInstruction){
-        return(
-<div>
-<ColourPuzzleInfo setShowInstructions={setShowInstruction} setTimeLimit={setTimeLimit}/></div>);}
 
    
 
     return (
         <div>
            
-       
+       {/*input area for the user to type in the answer*/}
        {showPuzzle && (<div className="input-area">
             <HackPuzzle onSolutionCalculated={getSolution} randomOrderArray={randomOrderArray}/>
             <input 

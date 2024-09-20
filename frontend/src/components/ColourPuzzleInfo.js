@@ -5,21 +5,21 @@ import examplePuzzle from "../resources/images/examplepuzzle.png";
 import exampleOrder from "../resources/images/exampleorder.png";
 
 
-const ColourPuzzleInfo = ({setShowInstructions, setTimeLimit}) => {
+const ColourPuzzleInfo = ({setShowInstruction, setTimeLimit, restartGame}) => {
     const [selectedTime, setSelectedTime] = useState(10);// default is 10 sec
     const[playClicked, setPlayClicked] = useState(false);
     
     const handleTimeSelect = (time) => {
         setSelectedTime(time);
     };
-    //url will end with colour-puzzle/start?time=[however long they choose]
-    const link = `start?time=${encodeURIComponent(selectedTime)}`;
+   
 
     const exitInstructions = () => {
         setPlayClicked(true);
-        setShowInstructions(false);
+        setShowInstruction(false);
       
         setTimeLimit(selectedTime);
+        restartGame();
         
     }
 
