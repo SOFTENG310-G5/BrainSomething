@@ -29,8 +29,9 @@ const OverallLeaderboard = () => {
                 (item.dinoJumpScore!=null && item.reactionGameScore!=null && item.colourPuzzleScore!=null && item.chimpTestScore!=null) ? 0.25 * item.dinoJumpScore + 0.1 * item.reactionGameScore + 0.15 * item.colourPuzzleScore + 0.5 * item.chimpTestScore : "N/A"
                    
             ]);
-            setUserScoresArray(updatedUserScoresArray);
             
+            setUserScoresArray(updatedUserScoresArray); // Set the state with the new array
+        
         } catch (error) {
             console.error('Error fetching top scores:', error);
         }
@@ -61,9 +62,9 @@ const OverallLeaderboard = () => {
                                 <td>{subArray[0]}</td> {/* Name */}
                                 <td>{ subArray[5]}</td> {/* Overall Score */}
                                     
-                                <td>{(subArray[1])} (s)</td> {/* Dino Jump Score */}
-                                <td>{(subArray[2])} (ms)</td> {/* Reaction Game Score */}
-                                <td>{(subArray[3])} (s)</td> {/* Colour Puzzle Score */}
+                                <td>{(subArray[1]!==undefined && subArray[1]!==null)?(subArray[1]).toFixed(2):null} (s)</td> {/* Dino Jump Score */}
+                                <td>{(subArray[2]!==undefined&& subArray[2]!==null)?(subArray[2]).toFixed(2):null} (ms)</td> {/* Reaction Game Score */}
+                                <td>{(subArray[3]!==undefined&& subArray[3]!==null)?(subArray[3]).toFixed(2):null} (s)</td> {/* Colour Puzzle Score */}
                                 <td>{subArray[4]} (points)</td> {/* Chimp Test Score */}
                             </tr>
                         ))
