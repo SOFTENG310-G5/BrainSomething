@@ -6,12 +6,14 @@ import dinosaurIcon from "../resources/images/dinosaur.png";
 import eyeIcon from "../resources/images/eyeicon.png";
 import reactionIcon from "../resources/images/reactionClock.png"; // Add an icon for the reaction game
 import monkeyIcon from "../resources/images/monkey.png";
+import OverallLeaderboard from "../components/OverallLeaderboard.js";
 
 
 // components
 const Home = () => {
   return (
       <div className="home">
+        <div>
         <div className="cards-container">
           {/* Card for Game 1 */}
           <div className="card">
@@ -43,6 +45,10 @@ const Home = () => {
             <p>Is your memory better than a monkey's?</p>
             <Link to="/game/4" className="play-link"> Play Chimp Test</Link>
           </div>
+        </div>
+        
+
+        <OverallLeaderboard />
         </div>
       </div>
   );
