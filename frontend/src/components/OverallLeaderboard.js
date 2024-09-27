@@ -26,11 +26,27 @@ const OverallLeaderboard = () => {
                 item.colourPuzzleScore,
                 item.chimpTestScore,
                 //calculate the overall score
-                (item.dinoJumpScore!=null && item.reactionGameScore!=null && item.colourPuzzleScore!=null && item.chimpTestScore!=null) ? 0.25 * item.dinoJumpScore + 0.1 * item.reactionGameScore + 0.15 * item.colourPuzzleScore + 0.5 * item.chimpTestScore : "N/A"
-                   
+                (item.dinoJumpScore != null && item.reactionGameScore != null && item.colourPuzzleScore != null && item.chimpTestScore != null) 
+                ? (0.25 * item.dinoJumpScore + 0.1 * item.reactionGameScore + 0.15 * item.colourPuzzleScore + 0.5 * item.chimpTestScore)
+                : "N/A"
+                               
             ]);
+            setUserScoresArray(updatedUserScoresArray); 
             
-            setUserScoresArray(updatedUserScoresArray); // Set the state with the new array
+             //sort the userScoresArray by the overall score of each user in descending order
+            const sortedUserScoresArray = updatedUserScoresArray.sort((a, b) => {
+                const scoreA = a[5];
+                const scoreB = b[5];
+            
+                const valueA = typeof scoreA === 'number' ? scoreA : -Infinity;
+                const valueB = typeof scoreB === 'number' ? scoreB : -Infinity;
+            
+                return valueB - valueA; 
+            });
+            
+            // Update the state with the sorted array
+            setUserScoresArray(sortedUserScoresArray);
+           
         
         } catch (error) {
             console.error('Error fetching top scores:', error);
@@ -61,7 +77,7 @@ const OverallLeaderboard = () => {
                             <tr key={index}>
                                 <td>{index + 1}</td> {/* Rank */}
                                 <td>{subArray[0]}</td> {/* Name */}
-                                <td>{ subArray[5]}</td> {/* Overall Score */}
+                                <td>{ (subArray[5]!==undefined && subArray[5]!==null && typeof subArray[5] ==="number")?(subArray[5]).toFixed(2): subArray[5]}</td> {/* Overall Score */}
                                     
                                 <td>{(subArray[1]!==undefined && subArray[1]!==null)?(subArray[1]).toFixed(2):null} (s)</td> {/* Dino Jump Score */}
                                 <td>{(subArray[2]!==undefined&& subArray[2]!==null)?(subArray[2]).toFixed(2):null} (ms)</td> {/* Reaction Game Score */}
