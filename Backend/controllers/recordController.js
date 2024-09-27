@@ -90,35 +90,40 @@ const saveScore = async (req, res) => {
         let record;
         if(screen=="1"){
             record = await DinoJumpRecords.create({ name, score });
+            //only updates the overall score if the new score is higher than the current score
+            if(score> nameRecordExists.dinoJumpScore || nameRecordExists.dinoJumpScore==null){
             const updatedRecord = await OverallRecords.findOneAndUpdate(
                 { name },                  // Filter: Find the record by name
-                { dinoJumpScore: score }, // Update: Set the new value(s) for the attribute(s)
+                { dinoJumpScore: score },   // Update: Set the new value(s) for the attribute(s)
                 { new: true }               // Options: Return the updated document
-            );
+            );}
         }
         else if(screen=="2"){
             record = await ReactionGameRecords.create({ name, score });
+            if(score< nameRecordExists.reactionGameScore || nameRecordExists.reactionGameScore==null){
             const updatedRecord = await OverallRecords.findOneAndUpdate(
                 { name },                  
                 { reactionGameScore: score }, 
                 { new: true }               
-            );
+            );}
         }
         else if(screen=="3"){
             record = await ColourPuzzleRecords.create({ name, score });
+            if(score< nameRecordExists.colourPuzzleScore || nameRecordExists.colourPuzzleScore==null){
             const updatedRecord = await OverallRecords.findOneAndUpdate(
-                { name },                  
+                { name },                 
                 { colourPuzzleScore: score }, 
-                { new: true }               
-            );
+                { new: true }              
+            );}
         }
         else if(screen=="4"){
             record = await ChimpTestRecords.create({ name, score });
+            if(score> nameRecordExists.chimpTestScore || nameRecordExists.chimpTestScore==null){
             const updatedRecord = await OverallRecords.findOneAndUpdate(
-                { name },                  
+                { name },                 
                 { chimpTestScore: score }, 
                 { new: true }               
-            );
+            );}
         }
 
         
@@ -193,5 +198,6 @@ module.exports = {
     getAllRecords,
     getTopScores,getUserScores,
     saveScore,
+   
     getUserRank
 };
