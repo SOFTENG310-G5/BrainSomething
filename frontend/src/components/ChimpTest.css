@@ -34,7 +34,7 @@ body {
 #scoreboard {
     color:rgb(0, 0, 0);
     position: absolute; 
-    top: 20px;
+    top: 120px;
     left: 20px;
     margin: 0px;
     padding: 10px;
@@ -47,7 +47,7 @@ body {
 #strikes {
     color:rgb(0, 0, 0);
     position: absolute; 
-    top: 20px;
+    top: 120px;
     right: 20px;
     margin: 0px;
     padding: 10px;
