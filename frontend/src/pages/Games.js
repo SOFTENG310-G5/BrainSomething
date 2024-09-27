@@ -212,7 +212,7 @@ const Reaction = () => {
                             <p>The average of your last 3 attempts: {averageScore.toFixed(dp)} {units}</p>
                             <p>Your rank: {rank}</p>
                             {/* Button to save the user's score */}
-                            <button disabled={saveScoreDisabled} onClick={saveScore}>Save your score</button>
+                            <button disabled={saveScoreDisabled || name.length==0 } onClick={saveScore}>Save your score</button>
                             {/* Input field for the user to enter their name */}
                             <input
                                 type="text"
