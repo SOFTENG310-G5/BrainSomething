@@ -18,14 +18,14 @@ const OverallLeaderboard = () => {
             }
             const data = await response.json();
            
-           
+           //Fill in each sub array of the userScoresArray 
             const updatedUserScoresArray = data.map(item => [
                 item.name,
                 item.dinoJumpScore,
                 item.reactionGameScore,
                 item.colourPuzzleScore,
                 item.chimpTestScore,
-            
+                //calculate the overall score
                 (item.dinoJumpScore!=null && item.reactionGameScore!=null && item.colourPuzzleScore!=null && item.chimpTestScore!=null) ? 0.25 * item.dinoJumpScore + 0.1 * item.reactionGameScore + 0.15 * item.colourPuzzleScore + 0.5 * item.chimpTestScore : "N/A"
                    
             ]);
@@ -55,6 +55,7 @@ const OverallLeaderboard = () => {
             </tr>
         </thead>
         <tbody>
+            {/* Display the user scores, creating a row for each user */}
         {userScoresArray.length > 0 ? (
                         userScoresArray.map((subArray, index) => (
                             <tr key={index}>
