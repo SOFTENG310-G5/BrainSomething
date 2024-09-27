@@ -79,19 +79,21 @@ const saveScore = async (req, res) => {
     
     try {
         let overallRecord;
-
-        const nameRecordExists = await OverallRecords.findOne({name}); // Fetch all records
+        let nameRecordExists;
+        nameRecordExists = await OverallRecords.findOne({name}); // Fetch all records
 
         // Check if the specific name exists in the records
-        if(!nameRecordExists){
-                overallRecord = await OverallRecords.create({ name });
+        if(nameRecordExists==null){
+                nameRecordExists = await OverallRecords.create({ name, dinoJumpScore: null, reactionGameScore: null, colourPuzzleScore: null, chimpTestScore: null });
+                      
         }
-
+       
         let record;
         if(screen=="1"){
             record = await DinoJumpRecords.create({ name, score });
             //only updates the overall score if the new score is higher than the current score
-            if(score> nameRecordExists.dinoJumpScore || nameRecordExists.dinoJumpScore==null){
+            
+            if( nameRecordExists.dinoJumpScore == undefined || nameRecordExists.dinoJumpScore==null ||score> nameRecordExists.dinoJumpScore){
             const updatedRecord = await OverallRecords.findOneAndUpdate(
                 { name },                  // Filter: Find the record by name
                 { dinoJumpScore: score },   // Update: Set the new value(s) for the attribute(s)
@@ -140,7 +142,6 @@ const getUserRank = async (req, res) => {
 
     try {
         const screen = req.headers['screen'];
-        console.log(`Screen header value: ${screen}`);
         let allRecords;
         
         let rank = 1;
