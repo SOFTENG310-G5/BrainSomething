@@ -1,0 +1,57 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 25px 20px; /* Padding inside the navbar */
+  position: sticky; /* Keeps the navbar fixed at the top */
+  top: 0;
+  width: 100vw; /* Use viewport width to ensure full width */
+  left: 0; /* Align to the left edge */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space between brand and nav links */
+  align-items: center; /* Center vertically */
+  box-sizing: border-box; /* Include padding in width calculation */
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+/* Navbar brand styles */
+.navbar-brand {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 100px; /* Adjust margin to bring closer to nav links */
+}
+
+.navbar-brand a {
+  color: white; /* Color for the brand link */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Navbar links */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Align items horizontally */
+  justify-content: flex-end; /* Align items to the right */
+  margin-right: 100px; /* Reduce space between brand and links */
+}
+
+.nav-links li {
+  margin: 0 30px; /* Adjust margin to control spacing between items */
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
