@@ -58,24 +58,24 @@ const getTopScores = async (req, res) => {
         else if(screen=="2"){
             topScores = await ReactionGameRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: 1 }).limit(5);
         }
         else if(screen=="3"){
             topScores = await ColourPuzzleRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: -1 }).limit(5);
         }
         else if(screen=="4"){
             topScores = await ChimpTestRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: -1 }).limit(5);
         }
@@ -174,8 +174,8 @@ const getUserRank = async (req, res) => {
         if (screen=="1"){
             allRecords = await DinoJumpRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: -1 });
             for (let i = 0; i < allRecords.length; i++) {
@@ -189,8 +189,8 @@ const getUserRank = async (req, res) => {
         else if(screen=="2"){
              allRecords = await ReactionGameRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: 1 });
              for (let i = 0; i < allRecords.length; i++) {
@@ -204,8 +204,8 @@ const getUserRank = async (req, res) => {
         else if (screen=="3"){
             allRecords = await ColourPuzzleRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: 1 });
             for (let i = 0; i < allRecords.length; i++) {
@@ -219,8 +219,8 @@ const getUserRank = async (req, res) => {
         else if (screen=="4"){
             allRecords = await ChimpTestRecords.find({
                 createdAt: {
-                  $gte: startOfDay,  // Greater than or equal to the start of the day
-                  $lt: endOfDay      // Less than the end of the day
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
                 }
               }).sort({ score: -1 });
             for (let i = 0; i < allRecords.length; i++) {
