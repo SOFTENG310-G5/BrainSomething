@@ -79,7 +79,7 @@ setUserScoresArray(sortedUserScoresArray);
                     <tbody>
                     {/* Display the user scores, creating a row for each user */}
                     {userScoresArray.length > 0 ? (
-                        userScoresArray.map((subArray, index) => (
+                        userScoresArray.slice(0,5).map((subArray, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td> {/* Rank */}
                                 <td>{subArray[0]}</td> {/* Name */}
