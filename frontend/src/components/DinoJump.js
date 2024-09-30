@@ -1,89 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import './DinoJump.css'; // Assuming you add custom styles for the game here
+import React, { useEffect, useState } from "react";
+import "./DinoJump.css"; // Assuming you have custom styles for the game here
 
-const Game1 = ({onGameOver}) => {
-    const [gameOver, setGameOver] = useState(false);
-    const [startTime, setStartTime] = useState(Date.now());
-    const [gameLength, setGameLength] = useState(null);
+const DinoJump = ({ onGameOver }) => {
+  const [gameOver, setGameOver] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [gameLength, setGameLength] = useState(null);
 
-    useEffect(() => {
-        
-        const dino = document.getElementById("dino");
-        const cactus = document.getElementById("cactus");
+  useEffect(() => {
+    const dino = document.getElementById("dino");
+    const cactus = document.getElementById("cactus");
 
-        const handleKeyDown = (event) => {
-            if (!gameOver) {
-                jump();
-            }
-        };
+    // Handle jumping when the spacebar or arrow keys are pressed
+    const handleKeyDown = () => {
+      if (!gameOver) jump();
+    };
 
-        document.addEventListener("keydown", handleKeyDown);
+    const jump = () => {
+      if (!dino.classList.contains("jump")) {
+        dino.classList.add("jump");
+        setTimeout(() => {
+          dino.classList.remove("jump");
+        }, 300); // Jump duration is 300ms
+      }
+    };
 
-        function jump() {
-            if (dino.classList != "jump") {
-                dino.classList.add("jump");
+    const checkCollision = () => {
+      const dinoTop = parseInt(
+        window.getComputedStyle(dino).getPropertyValue("top")
+      );
+      const cactusLeft = parseInt(
+        window.getComputedStyle(cactus).getPropertyValue("left")
+      );
 
-                setTimeout(function() {
-                    dino.classList.remove("jump");
-                }, 300);
-            }
-        }
+      // Check if the dino hits the cactus
+      if (cactusLeft < 120 && cactusLeft > 0 && dinoTop >= 140) {
+        setGameLength(Date.now() - startTime); // Calculate game duration
+        setGameOver(true);
+        cactus.style.animationPlayState = "paused"; // Stop the cactus animation
+      }
+    };
 
-        let isAlive = setInterval(function() {
-            let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
-            let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"));
+    const isAlive = setInterval(() => {
+      if (!gameOver) {
+        checkCollision();
+      } else {
+        onGameOver(gameLength / 1000); // Pass game length in seconds to the parent
+        clearInterval(isAlive); // Stop the collision check loop
+      }
+    }, 10); // Check for collision every 10ms
 
-            // Adjust the collision detection logic
-            if (cactusLeft < 120 && cactusLeft > 0 && dinoTop >= 140) {
-                // Calculate the game length 
-                setGameLength(Date.now() - startTime);
-                // Immediately stop cactus animation and set game over
-                cactus.style.animationPlayState = "paused"; // Directly stop the cactus animation
-                setGameOver(true);
-            }
+    document.addEventListener("keydown", handleKeyDown);
 
-            // Stop checking once the game is over, and pass the length of the game in seconds to the parent component
-            if (gameOver) {
-                onGameOver(gameLength/1000); 
-                clearInterval(isAlive);
-            }
-        }, 10);
+    // Clean up event listener and interval on component unmount
+    return () => {
+      clearInterval(isAlive);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [gameOver, gameLength, startTime, onGameOver]);
 
-        // Cleanup the interval and event listener on component unmount
-        return () => {
-            clearInterval(isAlive);
-            document.removeEventListener("keydown", handleKeyDown);
-        };
+  // Restart the game by resetting state and cactus animation
+  const restartGame = () => {
+    setGameOver(false);
+    setStartTime(Date.now());
 
-    }, [gameOver]);
+    const cactus = document.getElementById("cactus");
+    cactus.style.animation = "none"; // Stop the current animation
+    cactus.getBoundingClientRect(); // Force a reflow to reset animation
+    cactus.style.animation = "moveCactus 1.5s infinite linear"; // Restart animation
+  };
 
-    const restartGame = () => {
-        // Reset the game state
-        setGameOver(false);
+  return (
+    <div className="game-container">
+      <div id="dino" className="dino"></div>
+      <div id="cactus" className="cactus"></div>
+      {gameOver && (
+        <button className="game-over" onClick={restartGame}>
+          Game Over. Play again.
+        </button>
+      )}
+    </div>
+  );
+};
 
-        const cactus = document.getElementById("cactus");
-         // Stop the current animation
-        cactus.style.animation = "none";
-        // This forces reflow without triggering lint warnings
-        cactus.getBoundingClientRect();  
-        //restart the animation
-        cactus.style.animation = 'moveCactus 1.5s infinite linear'; 
-        setStartTime(Date.now());
-    }
-
-
-
-    return (
-        <div className="game-container">
-            <div id="dino"></div>
-            <div id="cactus"></div>
-            {gameOver && (
-                <button className="game-over" onClick={restartGame}>
-                    Game Over. Play again.
-                </button>
-            )}
-        </div>
-    );
-}
-
-export default Game1;
+export default DinoJump;
