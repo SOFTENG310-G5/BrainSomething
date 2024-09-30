@@ -5,7 +5,7 @@ const ChimpTestRecords = require('../models/chimpTestRecordModel');
 const ColourPuzzleRecords = require('../models/colourPuzzleRecordModel');
 const OverallRecords = require('../models/overallScoreRecordModel');
 const { get } = require('mongoose');
-
+const currentDay = new Date().toISOString().slice(0, 10);
 // Get all reaction records
 const getAllRecords = async (req, res) => {
     let records;
@@ -38,8 +38,9 @@ const getTopScores = async (req, res) => {
         const screen = req.headers['screen'];
         // Access the screen parameter
         
-        const startOfDay = new Date();
-        startOfDay.setHours(0, 0, 0, 0);
+   
+        
+
         let topScores;
         if(screen=="1"){
             topScores = await DinoJumpRecords.find({}).sort({ score: -1 }).limit(5);
