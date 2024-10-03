@@ -33,7 +33,10 @@
   background-position: center;
   top: 160px;
   left: 300px;
-  animation: moveCactus 1.5s infinite linear;
+}
+
+.run-animation{
+  animation: moveCactus 1.5s linear infinite;
 }
 
 @keyframes moveCactus {

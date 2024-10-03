@@ -10,7 +10,6 @@ const Game1 = ({onGameOver}) => {
         
         const dino = document.getElementById("dino");
         const cactus = document.getElementById("cactus");
-
         const handleKeyDown = (event) => {
             if (!gameOver) {
                 jump();
@@ -28,6 +27,17 @@ const Game1 = ({onGameOver}) => {
                 }, 300);
             }
         }
+
+
+        let $rand = 0;
+
+        cactus.addEventListener('animationed', function(){
+            
+            $rand = (Math.random() * 2) + 1;
+            console.log(this);
+            this.style.animationDuration = $rand + `s`;
+        }); 
+        
 
         let isAlive = setInterval(function() {
             let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
@@ -66,8 +76,10 @@ const Game1 = ({onGameOver}) => {
         cactus.style.animation = "none";
         // This forces reflow without triggering lint warnings
         cactus.getBoundingClientRect();  
+        // Generate a random duration
+        const randomDuration = (Math.random() * 2) + 1;
         //restart the animation
-        cactus.style.animation = 'moveCactus 1.5s infinite linear'; 
+        cactus.style.animation = `moveCactus ${randomDuration}s linear infinite`;
         setStartTime(Date.now());
     }
 
@@ -76,7 +88,7 @@ const Game1 = ({onGameOver}) => {
     return (
         <div className="game-container">
             <div id="dino"></div>
-            <div id="cactus"></div>
+            <div id="cactus" class="run-animation"></div>
             {gameOver && (
                 <button className="game-over" onClick={restartGame}>
                     Game Over. Play again.
