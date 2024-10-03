@@ -31,11 +31,18 @@ const Game1 = ({onGameOver}) => {
 
         let $rand = 0;
 
-        cactus.addEventListener('animationed', function(){
+        cactus.addEventListener('animationend', function(){
             
+            //removes current instance of animation
+            cactus.classList.remove("run-animation");
+
+            void cactus.offsetWidth;
+
             $rand = (Math.random() * 2) + 1;
             console.log(this);
             this.style.animationDuration = $rand + `s`;
+
+            cactus.classList.add("run-animation");
         }); 
         
 
@@ -80,6 +87,7 @@ const Game1 = ({onGameOver}) => {
         const randomDuration = (Math.random() * 2) + 1;
         //restart the animation
         cactus.style.animation = `moveCactus ${randomDuration}s linear infinite`;
+        
         setStartTime(Date.now());
     }
 

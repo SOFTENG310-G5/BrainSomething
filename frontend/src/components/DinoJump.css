@@ -36,7 +36,7 @@
 }
 
 .run-animation{
-  animation: moveCactus 1.5s linear infinite;
+  animation: moveCactus 1.5s linear 1;
 }
 
 @keyframes moveCactus {
