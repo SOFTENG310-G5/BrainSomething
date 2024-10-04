@@ -1,4 +1,4 @@
-import "./HackPuzzle.css";
+import "../styles/HackPuzzle.css";
 import React, {useState} from 'react';
 //image resources
 import examplePuzzle from "../resources/images/examplepuzzle.png";

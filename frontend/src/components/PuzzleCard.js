@@ -1,5 +1,5 @@
 import React from "react";
-import './HackPuzzle.css';
+import '../styles/HackPuzzle.css';
 
 //should take in all the "answers" as the   
 const PuzzleCard = ({cardColour, shapeColour, shapeType, shapeText, shapeTextColour, colourText, colourTextColour, number, numberColour}) => {

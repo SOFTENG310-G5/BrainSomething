@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactionGame from '../components/ReactionGame'; // Import the ReactionGame component
-import './Games.css'; // Import CSS for styling the page
+import '../styles/Games.css'; // Import CSS for styling the page
 import { useParams, useLocation } from 'react-router-dom';
 import DinoJump from '../components/DinoJump'; // Import the DinoJump component
 import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest component

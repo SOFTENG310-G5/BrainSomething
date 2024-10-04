@@ -1,4 +1,4 @@
-import './HackPuzzle.css';
+import '../styles/HackPuzzle.css';
 import React from "react";
 
 const OrderCards = ({first, second, third, fourth}) => {

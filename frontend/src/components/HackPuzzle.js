@@ -1,4 +1,4 @@
-import './HackPuzzle.css';
+import '../styles/HackPuzzle.css';
 import PuzzleCard from "../components/PuzzleCard"
 import ColourPuzzleHelper from './ColourPuzzleHelper';
 import React, {useState, useEffect} from 'react';

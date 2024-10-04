@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './DinoJump.css'; // Assuming you add custom styles for the game here
+import '../styles/DinoJump.css'; // Assuming you add custom styles for the game here
 
 const Game1 = ({onGameOver}) => {
     const [gameOver, setGameOver] = useState(false);
