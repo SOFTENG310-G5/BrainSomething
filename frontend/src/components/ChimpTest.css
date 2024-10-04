@@ -35,7 +35,7 @@ body {
     color:rgb(0, 0, 0);
     position: absolute; 
     top: 120px;
-    left: 20px;
+    left: 250px;
     margin: 0px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -48,7 +48,7 @@ body {
     color:rgb(0, 0, 0);
     position: absolute; 
     top: 120px;
-    right: 20px;
+    right: 250px;
     margin: 0px;
     padding: 10px;
     border: 1px solid #ddd;
