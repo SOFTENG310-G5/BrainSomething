@@ -188,7 +188,7 @@ const Reaction = () => {
 
     return (
         <div className="reaction-page">
-            <h1>{gameName}</h1>
+            <h1 className="game-title">{gameName}</h1>
             {/* Include the Game component */}
             {renderScreenComponent()}
             <div className="stats-and-leaderboard">
