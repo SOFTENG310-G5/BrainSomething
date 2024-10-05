@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ReactionGame.css'; // Styling for the reaction game
+import '../styles/ReactionGame.css'; // Styling for the reaction game
 
 const ReactionGame = ({ onGameOver }) => {
     const [color, setColor] = useState('blue'); // Initial color is blue

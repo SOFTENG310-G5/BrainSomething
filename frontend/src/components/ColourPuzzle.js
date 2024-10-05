@@ -1,4 +1,4 @@
-import "./HackPuzzle.css";
+import "../styles/HackPuzzle.css";
 import HackPuzzle from "./HackPuzzle";
 import OrderCards from "./OrderCards";
 import React, {useState, useEffect, useRef} from 'react';

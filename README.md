@@ -1,51 +1,82 @@
 # BrainSomething
 
-How to run webapp:
+BrainSomething is a web application designed to [brief description of what your project does]. This project is part of the SOFTENG 310 course at the University of Auckland.
 
-1. cd into frontend directory
-2. run `npm install` in the terminal
-3. run `npm start` in the terminal
+## Technologies Used
 
-# Getting Started with Create React App
+- Frontend: React.js
+- Backend: Node.js
+- Database: MongoDB
+- Package Manager: npm
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/download/) (Recommended version: v21.7.3)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (Included with Node.js installation)
+- [MongoDB](https://www.mongodb.com/try/download/community) (Recommended version: v8.0.0)
+
+### Installation and Setup
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/SOFTENG310-G5/BrainSomething.git
+   ```
+
+2. Backend Setup:
+
+   - Navigate to the backend directory:
+     ```
+     cd backend
+     ```
+   - Install dependencies:
+     ```
+     npm install
+     ```
+   - Start the backend server:
+     ```
+     npm run dev
+     ```
+
+3. Frontend Setup:
+
+   - Open a new terminal and navigate to the frontend directory:
+     ```
+     cd frontend
+     ```
+   - Install dependencies:
+     ```
+     npm install
+     ```
+   - Start the frontend application:
+     ```
+     npm start
+     ```
+
+4. Open your browser and go to `http://localhost:3000` to view the application.
+
+Note: Always start the backend server before running the frontend application.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the frontend project directory, you can run:
 
-### `npm start`
+- `npm start`: Runs the app in development mode
+- `npm test`: Launches the test runner
+- `npm run build`: Builds the app for production
+- `npm run eject`: Remove single build dependency from your project
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+For more details on these scripts, refer to the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Contributing
 
-### `npm test`
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more details on how to get started.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## License
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ## Learn More
 
@@ -77,7 +108,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# A1 Contributors
+## A1 Contributors
 
 - Stephen Fang
 - Nicholas Lianto
@@ -85,3 +116,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Erica Ngin
 - Hamish Patel
 - Zion Suh
+
+## A2 Contributors
+
+- Anna Lin
+- Seth Yoo
+- Tony Yin
+- Minsung Cho
+- Jaewon Kim
+- Rusiru Dharmasekhara
+
+## Acknowledgements
+
+Special thanks to our Project Supervisor, Kelly Blincoe, and James Tizard for guiding this project.
+
+## Getting Help
+
+If you need assistance, please:
+
+Check our [Contributing Guidelines](CONTRIBUTING.md) for information on how to report issues, and contacting

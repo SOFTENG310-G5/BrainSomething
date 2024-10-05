@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './ChimpTest.css';
+import '../styles/ChimpTest.css';
 
 function ChimpTest({onGameOver}) {
 

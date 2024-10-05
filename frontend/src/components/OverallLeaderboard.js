@@ -1,4 +1,4 @@
-import '../pages/Home.css'; // Import CSS for styling the page
+import '../styles/Home.css'; // Import CSS for styling the page
 import React,{ useState,useEffect } from "react";
 
 const OverallLeaderboard = () => {
