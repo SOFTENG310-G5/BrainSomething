@@ -5,6 +5,11 @@ const ChimpTestRecords = require('../models/chimpTestRecordModel');
 const ColourPuzzleRecords = require('../models/colourPuzzleRecordModel');
 const OverallRecords = require('../models/overallScoreRecordModel');
 const { get } = require('mongoose');
+const startOfDay = new Date().setHours(0,0,0,0)
+
+
+const endOfDay = new Date().setHours(23,59,59,999)
+
 
 // Get all reaction records
 const getAllRecords = async (req, res) => {
@@ -38,20 +43,41 @@ const getTopScores = async (req, res) => {
         const screen = req.headers['screen'];
         // Access the screen parameter
         
-        const startOfDay = new Date();
-        startOfDay.setHours(0, 0, 0, 0);
+   
+        
+
         let topScores;
         if(screen=="1"){
-            topScores = await DinoJumpRecords.find({}).sort({ score: -1 }).limit(5);
+            topScores = await DinoJumpRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  // Greater than or equal to the start of the day
+                  $lt: endOfDay      // Less than the end of the day
+                }
+              }).sort({ score: -1 }).limit(5);
         }
         else if(screen=="2"){
-            topScores = await ReactionGameRecords.find({}).sort({ score: 1 }).limit(5);
+            topScores = await ReactionGameRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: 1 }).limit(5);
         }
         else if(screen=="3"){
-            topScores = await ColourPuzzleRecords.find({}).sort({ score: -1 }).limit(5);
+            topScores = await ColourPuzzleRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: -1 }).limit(5);
         }
         else if(screen=="4"){
-            topScores = await ChimpTestRecords.find({}).sort({ score: -1 }).limit(5);
+            topScores = await ChimpTestRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: -1 }).limit(5);
         }
         res.status(200).json(topScores);
     } catch (error) {
@@ -146,7 +172,12 @@ const getUserRank = async (req, res) => {
         
         let rank = 1;
         if (screen=="1"){
-            allRecords = await DinoJumpRecords.find({}).sort({ score: -1 });
+            allRecords = await DinoJumpRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: -1 });
             for (let i = 0; i < allRecords.length; i++) {
                 if (allRecords[i].score >= score) {
                     rank++;
@@ -156,7 +187,12 @@ const getUserRank = async (req, res) => {
             }
         }
         else if(screen=="2"){
-             allRecords = await ReactionGameRecords.find({}).sort({ score: 1 });
+             allRecords = await ReactionGameRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: 1 });
              for (let i = 0; i < allRecords.length; i++) {
                 if (allRecords[i].score <= score) {
                     rank++;
@@ -166,7 +202,12 @@ const getUserRank = async (req, res) => {
             }
         }
         else if (screen=="3"){
-            allRecords = await ColourPuzzleRecords.find({}).sort({ score: 1 });
+            allRecords = await ColourPuzzleRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: 1 });
             for (let i = 0; i < allRecords.length; i++) {
                 if (allRecords[i].score <= score) {
                     rank++;
@@ -176,7 +217,12 @@ const getUserRank = async (req, res) => {
             }}
 
         else if (screen=="4"){
-            allRecords = await ChimpTestRecords.find({}).sort({ score: -1 });
+            allRecords = await ChimpTestRecords.find({
+                createdAt: {
+                  $gte: startOfDay,  
+                  $lt: endOfDay      
+                }
+              }).sort({ score: -1 });
             for (let i = 0; i < allRecords.length; i++) {
                 if (allRecords[i].score >= score) {
                     rank++;

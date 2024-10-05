@@ -4,8 +4,14 @@
     align-items: center;
 }
 
+.game-title {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
 .stats-and-leaderboard {
     display: flex;
+    margin-top: 50px;
     justify-content: space-between;
     width: 100%;
     max-width: 800px; /* Adjust based on your page layout */
