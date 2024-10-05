@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './DinoJump.css';
+import 'frontend/src/styles/DinoJump.css';
 
 const Game1 = ({ onGameOver }) => {
     const [gameOver, setGameOver] = useState(false);
