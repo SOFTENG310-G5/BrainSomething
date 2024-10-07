@@ -1,7 +1,8 @@
 import '../styles/HackPuzzle.css';
 import React from "react";
 
-const OrderCards = ({first, second, third, fourth}) => {
+// This component is used to display the order of the cards in the Colour Puzzle
+const OrderCards = ({ first, second, third, fourth }) => {
     return (
         <div className="card-collection">
             <div className="puzzle-card">

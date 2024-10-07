@@ -1,9 +1,9 @@
 import '../styles/HackPuzzle.css';
 import PuzzleCard from "../components/PuzzleCard"
 import ColourPuzzleHelper from './ColourPuzzleHelper';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
-const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
+const HackPuzzle = ({ onSolutionCalculated, randomOrderArray }) => {
 
     const helper = new ColourPuzzleHelper();
 
@@ -18,9 +18,9 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
     const [randomColourTextColours, setRandomColourTextColours] = useState([]);
     const [randomQuestions, setRandomQuestions] = useState([]);
     const [questionCards, setQuestionCards] = useState([]);
-    
 
-    useEffect(() =>{
+
+    useEffect(() => {
         let cardColours = helper.getRandomShades();
         let shapeColours = helper.getRandomShades();
         let shapeTypes = helper.getRandomShapes();
@@ -33,6 +33,7 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
         let questions = helper.getRandomQuestions();
         let cards = helper.getRandomOrderArray();
 
+        // set the random values to the state
         setRandomCardColours(cardColours);
         setRandomShapeColours(shapeColours);
         setRandomShapeTypes(shapeTypes);
@@ -44,6 +45,8 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
         setRandomColourTextColours(colourTextColours);
         setRandomQuestions(questions);
         setQuestionCards(cards);
+
+        // check if the card colours are the same as the shape colours
         const updatedShapeColours = shapeColours.map((shapeColour, index) => {
             let newShapeColour = shapeColour;
             while (cardColours[index] === newShapeColour) {
@@ -53,8 +56,8 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
         });
 
         setRandomShapeColours(updatedShapeColours);
-    },[]);
-    
+    }, []);
+
     let answer1;
     let answer2;
     let place1 = questionCards[0];
@@ -62,6 +65,7 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
     const index1 = randomOrderArray.indexOf(place1);
     const index2 = randomOrderArray.indexOf(place2);
 
+    // get the answers for the questions
     switch (randomQuestions[0]) {
         case "background-colour":
             answer1 = helper.getColorName(randomCardColours[index1]);
@@ -120,23 +124,24 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
             break;
     }
 
+    // combine the answers
     let solution = answer1 + " " + answer2;
     console.log(index1, index2)
-    console.log(place1,place2)
+    console.log(place1, place2)
     console.log(solution)
     useEffect(() => {
         if (solution) {
             onSolutionCalculated(solution);
         }
     }, [solution, onSolutionCalculated]);
-    
+
 
 
     return (
         <div className="background">
             <div className="input-area">
                 <div className="card-collection">
-                    <PuzzleCard 
+                    <PuzzleCard
                         cardColour={randomCardColours[0]}
                         shapeColour={randomShapeColours[0]}
                         shapeType={randomShapeTypes[0]}
@@ -147,7 +152,7 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
                         shapeTextColour={randomShapeTextColours[0]}
                         colourTextColour={randomColourTextColours[0]}
                     />
-                    <PuzzleCard 
+                    <PuzzleCard
                         cardColour={randomCardColours[1]}
                         shapeColour={randomShapeColours[1]}
                         shapeType={randomShapeTypes[1]}
@@ -158,7 +163,7 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
                         shapeTextColour={randomShapeTextColours[1]}
                         colourTextColour={randomColourTextColours[1]}
                     />
-                    <PuzzleCard 
+                    <PuzzleCard
                         cardColour={randomCardColours[2]}
                         shapeColour={randomShapeColours[2]}
                         shapeType={randomShapeTypes[2]}
@@ -169,7 +174,7 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
                         shapeTextColour={randomShapeTextColours[2]}
                         colourTextColour={randomColourTextColours[2]}
                     />
-                    <PuzzleCard 
+                    <PuzzleCard
                         cardColour={randomCardColours[3]}
                         shapeColour={randomShapeColours[3]}
                         shapeType={randomShapeTypes[3]}
@@ -180,13 +185,13 @@ const HackPuzzle  = ({ onSolutionCalculated, randomOrderArray }) =>{
                         shapeTextColour={randomShapeTextColours[3]}
                         colourTextColour={randomColourTextColours[3]}
                     />
-                    </div>
-                        <div className="qna-box">
-                            <div className="questions">{randomQuestions[0]}({questionCards[0]}) and {randomQuestions[1]}({questionCards[1]})</div>
-                        </div>
-                    </div>
+                </div>
+                <div className="qna-box">
+                    <div className="questions">{randomQuestions[0]}({questionCards[0]}) and {randomQuestions[1]}({questionCards[1]})</div>
+                </div>
+            </div>
         </div>
-        
+
     )
 }
 
