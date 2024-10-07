@@ -7,7 +7,7 @@ import ChimpTest from '../components/ChimpTest'; // Import the ChimpTest compone
 import ColourPuzzle from '../components/ColourPuzzle';
 
 const Reaction = () => {
-    
+
     // Get the game screen parameter from the URL
     const { screen } = useParams();
     const location = useLocation(); // Get the current location object
@@ -84,7 +84,7 @@ const Reaction = () => {
     // Function to fetch the top 5 scores of the day from the backend
     const getTopScores = async () => {
         try {
-            const response = await fetch('/api/reaction/top-scores', { headers: { 'screen': screen }});
+            const response = await fetch('/api/reaction/top-scores', { headers: { 'screen': screen } });
             if (!response.ok) {
                 throw new Error('Failed to fetch top scores');
             }
@@ -101,7 +101,7 @@ const Reaction = () => {
         try {
             await fetch('/api/reaction/save-score', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'screen': screen  },
+                headers: { 'Content-Type': 'application/json', 'screen': screen },
                 body: JSON.stringify({ name, score: averageScore }) // Send the user's name and average score to the backend
             });
             setScoreSaved(true); // Set the scoreSaved state to true upon successful save
@@ -113,7 +113,7 @@ const Reaction = () => {
     };
 
     const defineUnits = () => {
-        switch(screen){
+        switch (screen) {
             case "1":
                 setUnits("s");
                 break;
@@ -132,8 +132,8 @@ const Reaction = () => {
         }
     }
 
-    const defineDp = () => {    
-        switch(screen){
+    const defineDp = () => {
+        switch (screen) {
             case "1":
                 setDp(2);
                 break;
@@ -151,8 +151,8 @@ const Reaction = () => {
         }
     }
 
-    const defineGameName = () => {    
-        switch(screen){
+    const defineGameName = () => {
+        switch (screen) {
             case "1":
                 setGameName("Dino Jump");
                 break;
@@ -173,16 +173,16 @@ const Reaction = () => {
 
     const renderScreenComponent = () => {
         switch (screen) {
-          case "1":
-            return <DinoJump onGameOver={onGameOver} />;
-          case "2":
-            return <ReactionGame onGameOver={onGameOver}/>;
-          case "3":
-            return <ColourPuzzle onGameOver={onGameOver} />;
-          case "4":
-            return <ChimpTest onGameOver={onGameOver}/>;
-          default:
-            return <div>Invalid screen parameter</div>; // Optional fallback for invalid screens
+            case "1":
+                return <DinoJump onGameOver={onGameOver} />;
+            case "2":
+                return <ReactionGame onGameOver={onGameOver} />;
+            case "3":
+                return <ColourPuzzle onGameOver={onGameOver} />;
+            case "4":
+                return <ChimpTest onGameOver={onGameOver} />;
+            default:
+                return <div>Invalid screen parameter</div>; // Optional fallback for invalid screens
         }
     };
 
@@ -193,7 +193,7 @@ const Reaction = () => {
             {renderScreenComponent()}
             <div className="stats-and-leaderboard">
                 <div className="statistics">
-                    <h2>Statistics</h2>
+                    <h2>Records</h2>
                     {reactionTimes.length > 0 ? (
                         <ul>
                             {/* Display each reaction time in the list */}
@@ -209,7 +209,7 @@ const Reaction = () => {
                             <p>The average of your last 3 attempts: {averageScore.toFixed(dp)} {units}</p>
                             <p>Your rank: {rank}</p>
                             {/* Button to save the user's score */}
-                            <button disabled={saveScoreDisabled || name.length === 0 } onClick={saveScore}>Save your score</button>
+                            <button disabled={saveScoreDisabled || name.length === 0} onClick={saveScore}>Save your score</button>
                             {/* Input field for the user to enter their name */}
                             <input
                                 type="text"

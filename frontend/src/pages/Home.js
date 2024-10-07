@@ -12,18 +12,18 @@ import OverallLeaderboard from "../components/OverallLeaderboard.js";
 // components
 const Home = () => {
   return (
-      <div className="home">
-        <div>
-          {/* Header Section */}
-      <div className="header">
-        <h1>Welcome to BrainSomething!</h1>
-        <p>
-          Challenge your mind with fun and interactive games designed to improve
-          your cognitive skills. Test your memory, reaction speed, and
-          observational abilities across a variety of exciting games. Ready to
-          get smarter?
-        </p>
-      </div>
+    <div className="home">
+      <div>
+        {/* Header Section */}
+        <div className="header">
+          <h1>Welcome to BrainSomething!</h1>
+          <p>
+            Challenge your mind with fun and interactive games designed to improve
+            your cognitive skills. Test your memory, reaction speed, and
+            observational abilities across a variety of exciting games. Ready to
+            get smarter?
+          </p>
+        </div>
 
         <div className="cards-container">
           {/* Card for Game 1 */}
@@ -42,12 +42,12 @@ const Home = () => {
             <Link to="/game/2" className="play-link"> Play Reaction Game</Link>
           </div>
           {/* Card for colour puzzle */}
-        <div className="card">
-          <h3>Colour Puzzle</h3>
-          <img src={eyeIcon} alt="Eye" className="card-icon" />
-          <p>A tricky observation game</p>
-          <Link to="/game/3" className="play-link"> Play Colour Puzzle</Link>
-        </div>
+          <div className="card">
+            <h3>Colour Puzzle</h3>
+            <img src={eyeIcon} alt="Eye" className="card-icon" />
+            <p>A tricky observation game</p>
+            <Link to="/game/3" className="play-link"> Play Colour Puzzle</Link>
+          </div>
 
           {/* Card for Chimp Test Game */}
           <div className="card">
@@ -57,11 +57,12 @@ const Home = () => {
             <Link to="/game/4" className="play-link"> Play Chimp Test</Link>
           </div>
         </div>
-        
 
+
+        <h1>Overall Leaderboard</h1>
         <OverallLeaderboard />
-        </div>
       </div>
+    </div>
   );
 };
 
