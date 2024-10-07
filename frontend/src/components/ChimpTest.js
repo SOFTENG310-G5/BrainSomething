@@ -81,7 +81,10 @@ function ChimpTest({onGameOver}) {
       if (strikes === 3) {
 
         //the formula for the score is (level-3)*24 - (strikes*4)
-        onGameOver((level-3)*24 - (strikes*4));
+        const finalScore = (level-3)*24 - (strikes*4);
+    onGameOver(finalScore);
+    
+    document.getElementById('final-score').textContent = finalScore;
         
         
         document.getElementById('popup').style.display = 'flex';
@@ -127,8 +130,9 @@ function ChimpTest({onGameOver}) {
       <div id="popup" className="popup">
         <div className="popup-content">
           <h2>Game Over</h2>
+          <p>Your score: <span id="final-score"></span></p>
           <button className="rounded-button" id="rounded-button" onClick={handleTryAgain}>
-            Try Again?
+            Try Again
           </button>
         </div>
       </div>

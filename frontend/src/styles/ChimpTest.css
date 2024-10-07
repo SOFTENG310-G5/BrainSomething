@@ -1,121 +1,127 @@
 body {
- background-color: #ffffff; 
- height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
+  background-color: #ffffff;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tiles {
-    background-color: #f8f8f8;
-    display: grid;
-    grid-template-columns: repeat(10, 95px);
-    gap: 8px;
+  background-color: #f8f8f8;
+  display: grid;
+  grid-template-columns: repeat(10, 95px);
+  gap: 8px;
 }
 
-.tile{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 95px;
-    width: 95px;
-    background: #975032;
-    cursor: pointer;
-    text-align: center;
-    color:#fff;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95px;
+  width: 95px;
+  background: #975032;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tile.disabled {
-    pointer-events: none; 
+  pointer-events: none;
 }
 
 #scoreboard {
-    color:rgb(0, 0, 0);
-    position: absolute; 
-    top: 100px;
-    left: 100px;
-    margin: 0px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    z-index: 1000;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  margin: 0px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1000;
 }
 
 #strikes {
-    color:rgb(0, 0, 0);
-    position: absolute; 
-    top: 100px;
-    right: 100px;
-    margin: 0px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
-    z-index: 1000;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  margin: 0px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1000;
 }
 
 .popup {
-    display: none; 
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    max-width: 80%;
-    height: 50%;
-    background-color: rgb(255, 255, 255); 
-    justify-content: center; 
-    align-items: center; 
-    z-index: 1000; 
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 80%;
+  height: 25%;
+  background-color: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  z-index: 1000;
 }
 
 .popup-content {
-    background-color: rgb(255, 255, 255); 
-    color: black;
-    border-radius: 8px;
-    padding: 20px;
-    width: 300px; 
-    text-align: center;
-    position: relative;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  position: relative;
 }
 
-.overlay{
-    display: none; 
-    position: fixed; 
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999; 
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .rounded-button {
-    background-color: #28a745; 
-    color: white; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 15px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    outline: none; 
-    transition: background-color 0.3s ease; 
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+  transition: background-color 0.3s ease;
 }
 
-
 .rounded-button:hover {
-    background-color: #218838; 
+  background-color: #218838;
 }
 
 @keyframes flashRed {
-    0% { color: black; }
-    50% { color: red; }
-    100% { color: black; }
+  0% {
+    color: black;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
 }
 
 .flash {
-    animation: flashRed 1s ease;
+  animation: flashRed 1s ease;
 }
