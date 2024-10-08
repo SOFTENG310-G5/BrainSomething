@@ -12,7 +12,7 @@ const OverallLeaderboard = () => {
 
     const getUserScores = async () => {
         try {
-            const response = await fetch('/api/reaction/get-user-scores');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reaction/get-user-scores`);
             if (!response.ok) {
                 throw new Error('Failed to fetch name scores');
             }
