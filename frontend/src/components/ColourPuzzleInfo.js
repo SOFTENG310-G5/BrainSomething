@@ -44,7 +44,7 @@ const ColourPuzzleInfo = ({ setShowInstruction, setTimeLimit, restartGame }) => 
 
                             }
                         >
-                            play
+                            Play
                         </button>
                         <div className="time-selector">
                             <div>Select Puzzle Display Time:</div>
