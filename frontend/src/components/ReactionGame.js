@@ -7,6 +7,7 @@ const ReactionGame = ({ onGameOver }) => {
     const [startTime, setStartTime] = useState(null);
     const [reactionTime, setReactionTime] = useState(null);
 
+    // Set a random time for the red color to appear
     useEffect(() => {
         let timer;
         if (color === 'red') {
@@ -20,14 +21,17 @@ const ReactionGame = ({ onGameOver }) => {
         return () => clearTimeout(timer);
     }, [color]);
 
+    // Handle the click event
     const handleClick = () => {
+
         if (color === 'blue') {
             setColor('red');
             setMessage('Wait for green...');
-        } else if (color === 'red') {
+            //
+        } else if (color === 'red') {// If the user clicks too early
             setColor('blue');
             setMessage('Sorry, too early! Click this when you are ready.');
-        } else if (color === 'green') {
+        } else if (color === 'green') {// If the user clicks when the color is green
             const endTime = Date.now();
             const reactionTime = endTime - startTime;
             setReactionTime(reactionTime);

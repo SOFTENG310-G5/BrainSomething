@@ -1,14 +1,9 @@
 {
-  "homepage": "https://softeng310-g5.github.io/BrainSomething",
   "scripts": {
-    "clean": "rm -rf frontend/build",
-    "predeploy": "npm run build --prefix frontend",
-    "deploy": "gh-pages -d frontend/build -r https://github.com/softeng310-g5/BrainSomething.git",
     "test": "vitest"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.5",
-    "gh-pages": "^6.1.1",
     "tailwindcss": "^3.4.10",
     "vitest": "^2.0.5"
   },
