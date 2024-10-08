@@ -1,6 +1,6 @@
 # BrainSomething
 
-BrainSomething is a web application designed to [brief description of what your project does]. This project is part of the SOFTENG 310 course at the University of Auckland.
+BrainSomething is a web application with curated minigames, designed to improve cognitive abilities'. This project is part of the SOFTENG310 course at the University of Auckland.
 
 ## Deployment
 
