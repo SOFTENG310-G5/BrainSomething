@@ -69,7 +69,7 @@ const Reaction = () => {
     // Function to get the user's rank based on their average score
     const getRank = async (average) => {
         try {
-            const response = await fetch('/api/reaction/rank', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reaction/rank`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'screen': screen },
                 body: JSON.stringify({ score: average }) // Send the average score to the backend
@@ -84,7 +84,7 @@ const Reaction = () => {
     // Function to fetch the top 5 scores of the day from the backend
     const getTopScores = async () => {
         try {
-            const response = await fetch('/api/reaction/top-scores', { headers: { 'screen': screen } });
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reaction/top-scores`, { headers: { 'screen': screen } });
             if (!response.ok) {
                 throw new Error('Failed to fetch top scores');
             }
@@ -99,7 +99,7 @@ const Reaction = () => {
     // Function to save the user's score to the backend
     const saveScore = async () => {
         try {
-            await fetch('/api/reaction/save-score', {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/reaction/save-score`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'screen': screen },
                 body: JSON.stringify({ name, score: averageScore }) // Send the user's name and average score to the backend

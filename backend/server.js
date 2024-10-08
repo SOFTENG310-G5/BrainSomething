@@ -1,11 +1,14 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');  // Import CORS package
 const mongoose = require('mongoose');
 const BrainSomethingRoutes = require('./routes/recordRoutes');
 
 // express app
-const app = express()
+const app = express();
+// Enable CORS for all routes
+app.use(cors());  // This will allow all origins
 
 // middleware
 app.use(express.json())
