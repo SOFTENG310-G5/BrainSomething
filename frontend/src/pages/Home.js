@@ -59,7 +59,7 @@ const Home = () => {
         </div>
 
 
-        <h1>Overall Leaderboard</h1>
+        <h1><strong>Overall Leaderboard</strong></h1>
         <OverallLeaderboard />
       </div>
     </div>
